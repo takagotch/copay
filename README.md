@@ -56,6 +56,40 @@ git clone https://github.com/bitpay/copay.git
 cd copay
 ```
 
-```
+```js
+// test/karma.conf.js
+module.exports = function(config) {
+  config.set({
+    webpack: {
+      node: { fs: 'empty', net: 'empty', tls: 'empty', dns: 'empty' }
+    },
+    basePath: '...',
+    browserDisconnectTolerance: 2,
+    browserNoActivityTimeout: 60 * 1000,
+    frameworks: ['jasmine', '@angular-devkit/build-angular'],
+    plugins: [],
+    client: {},
+    files: [],
+    preprocessors: {},
+    mime: {},
+    coverageIstanbulResporter: {},
+    
+    reporters:
+      config.angularCli && config.angularCli.codeCoverage
+        ? []
+        : []
+        : [],
+      specReporter: {},
+      port: 9876,
+      colors: true,
+      logLevel: config.LOG_INFO,
+      autoWatch: true,
+      browsers: [],
+      customLaunchers: {},
+      singleRun: false
+  });
+};
+
+
 ```
 
